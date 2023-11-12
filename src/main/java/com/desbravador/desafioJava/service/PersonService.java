@@ -12,7 +12,7 @@ public interface PersonService {
 
   Person getPersonByCpf(String cpf);
 
-  Person savePerson(Person person);
+  Person createPerson(Person person);
 
   List<Person> getPersonByName(String name);
 

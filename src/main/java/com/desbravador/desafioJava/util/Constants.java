@@ -18,4 +18,5 @@ public class Constants {
 
 
     public static final String PERSON_NOT_MANAGER = "Pessoa do cpf: '%s' nome: '%s' não é gerente";
+    public static final String PERSON_ALREADY_EXISTING = "Pessoa de cpf: '%s' já cadastrada";
 }

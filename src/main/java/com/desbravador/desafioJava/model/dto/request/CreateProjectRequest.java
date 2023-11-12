@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -20,9 +21,9 @@ public class CreateProjectRequest {
   @NotEmpty(message = "O campo 'nome' deve ser informado.")
   private String nome;
 
-  /*private LocalDate dataInicio;
+  private LocalDate dataInicio;
   private LocalDate dataPrevisaoFim;
-  private LocalDate dataFim;*/
+  private LocalDate dataFim;
   private String descricao;
   private ProjectStatusEnum status;
   private BigDecimal orcamento;

@@ -1,6 +1,7 @@
 package com.desbravador.desafioJava.service.impl;
 
 import com.desbravador.desafioJava.exceptionhandler.exception.NotFoundException;
+import com.desbravador.desafioJava.exceptionhandler.exception.ValidateException;
 import com.desbravador.desafioJava.model.Person;
 import com.desbravador.desafioJava.repository.PersonRepository;
 import com.desbravador.desafioJava.service.PersonService;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import static com.desbravador.desafioJava.util.Constants.*;
 
@@ -35,7 +38,8 @@ public class PersonServiceImpl implements PersonService {
 
   @Override
   @Transactional
-  public Person savePerson(Person person) {
+  public Person createPerson(Person person) {
+    validateExistingPerson(person);
     return repository.save(person);
   }
 
@@ -58,6 +62,13 @@ public class PersonServiceImpl implements PersonService {
             repository.findById(person.getId()).orElseThrow(() -> new NotFoundException(String.format(PERSON_NOT_FOUND_TO_UPDATE, person.getId())));
     existingPerson.setNome(person.getNome());
     return repository.save(existingPerson);
+  }
+
+  private void validateExistingPerson(Person person) {
+    var existingPerson = Optional.ofNullable(person.getCpf()).map(repository::findByCpf).orElse(null);
+    if (Objects.nonNull(existingPerson)) {
+      throw new ValidateException(String.format(PERSON_ALREADY_EXISTING, person.getCpf()));
+    }
   }
 
 }

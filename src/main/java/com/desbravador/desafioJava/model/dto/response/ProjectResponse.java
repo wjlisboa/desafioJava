@@ -13,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -41,16 +42,18 @@ public class ProjectResponse {
     response.setStatus(Optional.ofNullable(project.getStatus()).map(ProjectStatusEnum::valueOf).orElse(null));
     response.setRisco(Optional.ofNullable(project.getRisco()).map(ProjectRiskEnum::valueOf).orElse(null));
     response.setGerente(Optional.ofNullable(project.getGerente()).map(PersonResponse::of).orElse(null));
-    response.setFuncionarios(getFuncionarios(project));
+    response.setFuncionarios(getFuncionarios(project.getMembros()));
 
     return response;
   }
 
-  private static List<PersonResponse> getFuncionarios(Project project) {
-    return project.getMembros()
-                  .stream()
-                  .map(Members::getPerson)
-                  .map(PersonResponse::of)
-                  .collect(Collectors.toList());
+  private static List<PersonResponse> getFuncionarios(List<Members> members) {
+    if (Objects.nonNull(members)) {
+      return members.stream()
+              .map(Members::getPerson)
+              .map(PersonResponse::of)
+              .collect(Collectors.toList());
+    }
+    return List.of();
   }
 }

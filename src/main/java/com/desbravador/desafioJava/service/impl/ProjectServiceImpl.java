@@ -37,7 +37,7 @@ public class ProjectServiceImpl implements ProjectService {
 
   @Override
   @Transactional
-  public Project saveProject(Project project) {
+  public Project createProject(Project project) {
     project.setGerente(getGerente(project.getGerente().getCpf()));
     return repository.save(project);
   }
@@ -76,6 +76,9 @@ public class ProjectServiceImpl implements ProjectService {
 
   private void fillExistingProject(Project project, Project existingProject) {
     Optional.ofNullable(project.getGerente().getCpf()).ifPresent(cpf -> existingProject.setGerente(getGerente(cpf)));
+    Optional.ofNullable(project.getDataInicio()).ifPresent(existingProject::setDataInicio);
+    Optional.ofNullable(project.getDataPrevisaoFim()).ifPresent(existingProject::setDataPrevisaoFim);
+    Optional.ofNullable(project.getDataFim()).ifPresent(existingProject::setDataFim);
     Optional.ofNullable(project.getNome()).ifPresent(existingProject::setNome);
     Optional.ofNullable(project.getDescricao()).ifPresent(existingProject::setDescricao);
     Optional.ofNullable(project.getStatus()).ifPresent(existingProject::setStatus);

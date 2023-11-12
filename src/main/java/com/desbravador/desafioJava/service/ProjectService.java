@@ -10,7 +10,7 @@ public interface ProjectService {
 
   Project getProjectById(Long id);
 
-  Project saveProject(Project project);
+  Project createProject(Project project);
 
   List<Project> getProjectByName(String name);
 
