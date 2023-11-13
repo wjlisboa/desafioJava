@@ -1,6 +1,7 @@
 package com.desbravador.desafioJava.model;
 
 
+import com.desbravador.desafioJava.model.dto.request.MemberRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Members {
+public class Member {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +30,10 @@ public class Members {
   @JoinColumn(name = "idPessoa")
   private Person person;
 
+  public static Member of(MemberRequest request) {
+    return builder()
+            .project(Project.builder().id(request.getIdProjeto()).build())
+            .person(Person.builder().cpf(request.getCpf()).build())
+            .build();
+  }
 }

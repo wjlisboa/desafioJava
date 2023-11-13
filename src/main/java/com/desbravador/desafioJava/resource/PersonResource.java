@@ -82,7 +82,7 @@ public interface PersonResource {
     @Operation(summary = "Excluir uma pessoa")
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "Pessoa Excluída", content = {
-                    @Content(schema = @Schema(implementation = PersonResponse.class), mediaType = "application/json") }),
+                    @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "404", description = "Pessoa não existente", content = {
                     @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })

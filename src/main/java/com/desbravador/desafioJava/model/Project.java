@@ -5,10 +5,7 @@ import com.desbravador.desafioJava.model.dto.request.CreateProjectRequest;
 import com.desbravador.desafioJava.model.dto.request.UpdateProjectRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.beans.BeanUtils;
 
 import java.math.BigDecimal;
@@ -21,6 +18,7 @@ import java.util.Optional;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"membros"})
 public class Project {
 
   @Id
@@ -50,7 +48,7 @@ public class Project {
   private Person gerente;
 
   @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
-  private List<Members> membros;
+  private List<Member> membros;
 
 
   public static Project of(CreateProjectRequest createRequest) {

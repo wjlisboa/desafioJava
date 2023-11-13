@@ -1,6 +1,6 @@
 package com.desbravador.desafioJava.model.dto.response;
 
-import com.desbravador.desafioJava.model.Members;
+import com.desbravador.desafioJava.model.Member;
 import com.desbravador.desafioJava.model.Project;
 import com.desbravador.desafioJava.model.ProjectRiskEnum;
 import com.desbravador.desafioJava.model.ProjectStatusEnum;
@@ -47,10 +47,10 @@ public class ProjectResponse {
     return response;
   }
 
-  private static List<PersonResponse> getFuncionarios(List<Members> members) {
+  private static List<PersonResponse> getFuncionarios(List<Member> members) {
     if (Objects.nonNull(members)) {
       return members.stream()
-              .map(Members::getPerson)
+              .map(Member::getPerson)
               .map(PersonResponse::of)
               .collect(Collectors.toList());
     }

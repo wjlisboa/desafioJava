@@ -74,7 +74,7 @@ public interface ProjectResource {
     @Operation(summary = "Excluir um projeto")
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "Projeto Excluido", content = {
-                    @Content(schema = @Schema(implementation = ProjectResponse.class), mediaType = "application/json") }),
+                    @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "404", description = "Projeto não existente", content = {
                     @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })

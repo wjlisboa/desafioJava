@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import static com.desbravador.desafioJava.util.Constants.*;
@@ -65,8 +64,8 @@ public class PersonServiceImpl implements PersonService {
   }
 
   private void validateExistingPerson(Person person) {
-    var existingPerson = Optional.ofNullable(person.getCpf()).map(repository::findByCpf).orElse(null);
-    if (Objects.nonNull(existingPerson)) {
+    var existingPerson = Optional.ofNullable(person.getCpf()).flatMap(repository::findByCpf);
+    if (existingPerson.isPresent()) {
       throw new ValidateException(String.format(PERSON_ALREADY_EXISTING, person.getCpf()));
     }
   }
