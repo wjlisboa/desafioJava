@@ -9,7 +9,7 @@ public interface MemberService {
 
   List<Project> findMembersByCpf(String cpf);
 
-  Project associeteMember(Member member);
+  Project associateMember(Member member);
 
   Project disassociateMember(Member member);
 }

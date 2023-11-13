@@ -37,9 +37,9 @@ public interface MemberResource {
             @ApiResponse(responseCode = "404", description = "Pessoa ou Projeto não existente", content = {
                     @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
-    @PostMapping("/associeteMember")
+    @PostMapping("/associateMember")
     @ResponseStatus(code = HttpStatus.CREATED)
-    ProjectResponse associeteMember(@RequestBody @Valid final MemberRequest request);
+    ProjectResponse associateMember(@RequestBody @Valid final MemberRequest request);
 
     @Operation(summary = "Desassociar uma pessoa de um determinado projeto")
     @ApiResponses({

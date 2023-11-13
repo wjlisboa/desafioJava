@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 
   @Override
   @Transactional
-  public Project associeteMember(Member member) {
+  public Project associateMember(Member member) {
     var newMember = Member.builder()
                             .project(projectService.getProjectById(member.getProject().getId()))
                             .person(personService.getPersonByCpf(member.getPerson().getCpf()))

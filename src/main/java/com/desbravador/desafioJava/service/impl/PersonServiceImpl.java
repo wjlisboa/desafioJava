@@ -59,8 +59,18 @@ public class PersonServiceImpl implements PersonService {
   public Person updatePerson(Person person) {
     var existingPerson =
             repository.findById(person.getId()).orElseThrow(() -> new NotFoundException(String.format(PERSON_NOT_FOUND_TO_UPDATE, person.getId())));
-    existingPerson.setNome(person.getNome());
+
+    fillExistingPerson(person, existingPerson);
+
     return repository.save(existingPerson);
+  }
+
+  private void fillExistingPerson(Person person, Person existingPerson) {
+    Optional.ofNullable(person.getNome()).ifPresent(existingPerson::setNome);
+    Optional.ofNullable(person.getDataNascimento()).ifPresent(existingPerson::setDataNascimento);
+    Optional.ofNullable(person.getCpf()).ifPresent(existingPerson::setCpf);
+    Optional.ofNullable(person.getFuncionario()).ifPresent(existingPerson::setFuncionario);
+    Optional.ofNullable(person.getGerente()).ifPresent(existingPerson::setGerente);
   }
 
   private void validateExistingPerson(Person person) {

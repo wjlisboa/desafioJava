@@ -27,8 +27,8 @@ public class MemberResourceImpl implements MemberResource {
     }
 
     @Override
-    public ProjectResponse associeteMember(MemberRequest request) {
-        return ProjectResponse.of(service.associeteMember(Member.of(request)));
+    public ProjectResponse associateMember(MemberRequest request) {
+        return ProjectResponse.of(service.associateMember(Member.of(request)));
     }
 
     @Override
