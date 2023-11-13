@@ -14,3 +14,6 @@ Para rodar o projeto é necessário ter o docker e o docker-compose instalado; (
 Na Raiz do projeto executar o comando: **docker-compose up**
 
 Documentação da API via Swagger: http://localhost:8080/doc
+
+![](./doc/Swagger1.png)
+![](./doc/Swagger2.png)
